@@ -7,5 +7,3 @@ for test_case in range(1, T + 1):
         dat[ord(word[i])-97] += 1
     print(f"#{test_case}", end=' ')
     print(*dat)
-
-
