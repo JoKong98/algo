@@ -1,29 +1,24 @@
-T = int(input())
-# 여러개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
-for test_case in range(1, T + 1):
-    # ///////////////////////////////////////////////////////////////////////////////////
+N = 4
+visited = [0] * N
 
-    h, w =  map(int, input().split())
-    li_a = []
-    for i in range(h):
-        li_a.append(list(map(int, input().split())))
+# 시작: 0번째 행 / 누적값: 행번호
+# 종료조건: 모든 행을 고려했을 때
+def recur(row):
+    if row == N:
+        return
 
-    g_count = 0
-    b_count = 0
-    dic_b = {}
-    li_b = []
-    b_h, b_w = map(int, input().split())
-    for i in range(b_h):
-        li_b.append(list(map(int, input().split())))
-        for j in range(b_w):
-            dic_b[li_b[i][j]] = 1
-    for i in range(h):
-        for j in range(w):
-            if li_a[i][j] in dic_b.keys():
-                b_count += 1
-            else:
-                g_count += 1
-                continue
+    # N 개의 행을 모두 체크
+    for i in range(N):
+        # 이미 방문한 행이라면, 다음 행을 체크
+        if visited[i]:
+            continue
 
-    print(f'#{test_case} {b_count} {g_count}')
-# ///////////////////////////////////////////////////////////////////////////////////
+        # 현재 i번 째 열을 선택
+        visited[i] = 1
+        # 다음 재귀 호출 코드 (다음 행을 봐라)
+        recur(row + 1)
+        # 되돌아 왔을 때, 계산한 값을 초기화
+        visited[i] = 0
+
+
+recur(0)
