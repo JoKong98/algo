@@ -19,3 +19,6 @@ for test_case in range(1, T + 1):
         for j in range(N-m+1)
     )
     print(f'#{test_case} {max_count}')
+    
+    
+    
